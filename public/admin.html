@@ -3,47 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Server Panic — Admin</title>
+  <title>Server Panic — Game Master Control Center</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-<div class="container">
-  <div class="screen active" style="max-width:700px; width:100%;">
-    <h1>🔧 Admin Panel</h1>
-    <p class="subtitle">Server Panic — Game Master Controls</p>
+<nav class="navbar">
+  <a href="/" class="nav-brand">🔥 Server Panic</a>
+  <ul class="nav-links">
+    <li><a href="/" class="nav-link">🏠 Lobby</a></li>
+    <li><a href="/leaderboard" class="nav-link">🏆 Leaderboard</a></li>
+    <li><a href="/admin" class="nav-link active">🔧 Game Master</a></li>
+  </ul>
+</nav>
 
-    <div class="card" style="margin-top:1.5rem; max-width:700px;">
+<div class="container" style="max-width:960px; padding-top:1.5rem;">
+  <div class="screen active" style="max-width:100%; width:100%;">
+    
+    <div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+      <div>
+        <h1>🔧 Game Master Control Center</h1>
+        <p class="subtitle">Multi-team Tournament Management & Live Event Controls</p>
+      </div>
+      <a href="/leaderboard" class="btn btn-secondary btn-sm" target="_blank">
+        📊 Open Public Leaderboard
+      </a>
+    </div>
+
+    <!-- Event Controls Bar -->
+    <div class="card" style="max-width:100%; margin-top:1rem;">
       <div class="card-header">
+        <span class="icon">🎮</span>
+        <span class="mono" style="font-weight:700;">Global Event Actions</span>
+      </div>
+      
+      <div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center;">
+        <button class="btn btn-primary" id="btn-start-all">
+          🚀 Start All Ready Games
+        </button>
+        <button class="btn btn-secondary" id="btn-toggle-pause">
+          ⏸️ Pause Event
+        </button>
+        <button class="btn btn-danger btn-sm" id="btn-clear-all" style="margin-left:auto;">
+          🧹 Clear All Rooms
+        </button>
+      </div>
+      <p style="font-size:.75rem; color:var(--text-dim); font-family:var(--font-mono); margin-top:.75rem;">
+        Note: Starting all games launches matches for any room with both Traffic Cop and Mechanic roles selected.
+      </p>
+    </div>
+
+    <!-- Rooms Table -->
+    <div class="card" style="margin-top:1rem; max-width:100%; padding:0; overflow:hidden;">
+      <div class="card-header" style="padding:1.25rem; margin-bottom:0;">
         <span class="icon">📡</span>
-        <span class="mono" style="font-weight:600;">Active Rooms</span>
+        <span class="mono" style="font-weight:700;">Active Event Rooms</span>
         <span id="room-count" style="margin-left:auto; font-family:var(--font-mono); font-size:.8rem; color:var(--text-dim);">0 rooms</span>
       </div>
 
-      <div id="rooms-container">
+      <div style="overflow-x:auto;">
         <table class="admin-table">
           <thead>
             <tr>
               <th>Code</th>
-              <th>Team</th>
+              <th>Team Name</th>
               <th>Players</th>
               <th>Roles</th>
+              <th>Throughput</th>
+              <th>Time</th>
               <th>Status</th>
+              <th style="text-align:right;">Actions</th>
             </tr>
           </thead>
           <tbody id="rooms-tbody">
-            <tr><td colspan="5" style="color:var(--text-dim); text-align:center; padding:2rem;">No rooms yet</td></tr>
+            <tr><td colspan="8" style="color:var(--text-dim); text-align:center; padding:2rem;">No rooms created yet</td></tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <button class="btn btn-danger btn-lg" id="btn-start-all" style="margin-top:1.5rem;">
-      🚀 Start All Games
-    </button>
-    <p style="font-size:.75rem; color:var(--text-dim); font-family:var(--font-mono); margin-top:.5rem;">
-      Only rooms with both roles filled will start.
-    </p>
   </div>
 </div>
 

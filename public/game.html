@@ -9,7 +9,28 @@
 </head>
 <body>
 
+<nav class="navbar">
+  <a href="/" class="nav-brand">🔥 Server Panic</a>
+  <ul class="nav-links">
+    <li><a href="/" class="nav-link">🏠 Lobby</a></li>
+    <li><a href="/leaderboard" class="nav-link" target="_blank">🏆 Leaderboard</a></li>
+    <li><a href="/admin" class="nav-link" target="_blank">🔧 Game Master</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ PAUSE BANNER OVERLAY ═════════════════════════════════════════ -->
+<div class="pause-banner" id="pause-banner">
+  <div class="pause-title">⏸️ EVENT PAUSED</div>
+  <div class="pause-desc">The Game Master has paused the event. Game logic will resume shortly!</div>
+</div>
+
 <div class="game-container" id="game-root">
+
+  <!-- ── Incident Alert Banner ────────────────────────────────────────── -->
+  <div class="incident-banner" id="incident-banner">
+    <span id="incident-title">🚨 EMERGENCY INCIDENT</span>
+    <span id="incident-desc" style="font-weight:400; font-size:.8rem;">Details...</span>
+  </div>
 
   <!-- ── Top Bar ──────────────────────────────────────────────────────── -->
   <div class="top-bar">
@@ -17,7 +38,10 @@
       <span class="team-name" id="g-team-name">Team</span>
       <span style="color:var(--text-dim); font-size:.8rem; margin-left:.5rem; font-family:var(--font-mono);" id="g-room-code"></span>
     </div>
-    <span class="role-badge" id="g-role-badge">ROLE</span>
+    <div style="display:flex; align-items:center; gap:1rem;">
+      <span style="font-family:var(--font-mono); font-size:.9rem; font-weight:700; color:var(--text-muted);" id="g-timer">⏱️ 00:00</span>
+      <span class="role-badge" id="g-role-badge">ROLE</span>
+    </div>
   </div>
 
   <!-- ── Progress ─────────────────────────────────────────────────────── -->
@@ -42,7 +66,7 @@
         <h3>🎯 Route To</h3>
         <div id="tc-routes"></div>
         <p style="font-size:.75rem; color:var(--text-dim); font-family:var(--font-mono); margin-top:.5rem;">
-          Click a server to send the top request there. You cannot see server health.
+          Match request category to server type (e.g. 🗄️ DB → [DB], 🔐 AUTH → [AUTH]). Mismatches cause +25% heat spikes!
         </p>
       </div>
     </div>
@@ -60,13 +84,16 @@
         </button>
         <div id="upgrade-btns"></div>
         <p style="font-size:.75rem; color:var(--text-dim); font-family:var(--font-mono); margin-top:.5rem;">
-          You cannot see the incoming traffic queue.
+          Communicate server roles with Traffic Cop. Repairing costs 5 points (4s cooldown).
         </p>
       </div>
     </div>
   </div>
 
 </div>
+
+<!-- Toast Message Container -->
+<div class="toast-msg" id="toast-msg"></div>
 
 <!-- ═══ GAME OVER OVERLAY ════════════════════════════════════════════ -->
 <div class="game-over-overlay" id="game-over-overlay">

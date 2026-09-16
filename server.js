@@ -17,9 +17,13 @@ const io = new Server(server, {
 // ── Static files ────────────────────────────────────────────────────────────
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ── Admin route ─────────────────────────────────────────────────────────────
+// ── Admin & Leaderboard routes ────────────────────────────────────────────────
 app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+});
+
+app.get('/leaderboard', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'leaderboard.html'));
 });
 
 // ── Socket.io ───────────────────────────────────────────────────────────────
