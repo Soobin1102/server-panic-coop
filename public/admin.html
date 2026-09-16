@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Server Panic — Admin</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="screen active" style="max-width:700px; width:100%;">
+    <h1>🔧 Admin Panel</h1>
+    <p class="subtitle">Server Panic — Game Master Controls</p>
+
+    <div class="card" style="margin-top:1.5rem; max-width:700px;">
+      <div class="card-header">
+        <span class="icon">📡</span>
+        <span class="mono" style="font-weight:600;">Active Rooms</span>
+        <span id="room-count" style="margin-left:auto; font-family:var(--font-mono); font-size:.8rem; color:var(--text-dim);">0 rooms</span>
+      </div>
+
+      <div id="rooms-container">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Team</th>
+              <th>Players</th>
+              <th>Roles</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="rooms-tbody">
+            <tr><td colspan="5" style="color:var(--text-dim); text-align:center; padding:2rem;">No rooms yet</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <button class="btn btn-danger btn-lg" id="btn-start-all" style="margin-top:1.5rem;">
+      🚀 Start All Games
+    </button>
+    <p style="font-size:.75rem; color:var(--text-dim); font-family:var(--font-mono); margin-top:.5rem;">
+      Only rooms with both roles filled will start.
+    </p>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

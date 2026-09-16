@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Server Panic — A real-time co-op multiplayer game. Route traffic, manage servers, prevent meltdowns.">
+  <title>Server Panic — Lobby</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ═══ SCREEN 1: LANDING ════════════════════════════════════════════ -->
+  <div id="screen-landing" class="screen active">
+    <h1>🔥 Server Panic</h1>
+    <p class="subtitle">Real-time co-op infrastructure mayhem</p>
+
+    <div class="card" style="margin-top: 1rem;">
+      <div class="card-header">
+        <span class="icon">🏠</span>
+        <span class="mono" style="font-weight:600;">Create or Join a Room</span>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:.75rem;">
+        <input type="text" id="input-nickname" placeholder="Your nickname" maxlength="16">
+        <input type="text" id="input-team" placeholder="Team name">
+
+        <div style="display:flex; gap:.75rem;">
+          <button class="btn btn-primary" style="flex:1;" id="btn-create">Create Room</button>
+        </div>
+
+        <div style="border-top:1px solid var(--border); padding-top:.75rem; display:flex; gap:.75rem;">
+          <input type="text" id="input-code" placeholder="Room code" maxlength="4" style="text-transform:uppercase; letter-spacing:.2em; font-weight:700; flex:1;">
+          <button class="btn btn-secondary" id="btn-join">Join</button>
+        </div>
+      </div>
+    </div>
+
+    <p id="landing-error" style="color:var(--heat-hot); font-family:var(--font-mono); font-size:.85rem; display:none;"></p>
+  </div>
+
+  <!-- ═══ SCREEN 2: ROOM (Code + Role Select) ═════════════════════════ -->
+  <div id="screen-room" class="screen">
+    <h1>🔥 Server Panic</h1>
+    <p class="subtitle">Share this code with your teammate</p>
+
+    <div class="room-code" id="display-code">----</div>
+    <p style="color:var(--text-muted); font-family:var(--font-mono); font-size:.85rem;">
+      Team: <span id="display-team" style="color:var(--neon-green);"></span>
+    </p>
+
+    <h3 style="margin-top:1rem; font-size:1rem; color:var(--text-muted);">Choose Your Role</h3>
+
+    <div class="role-grid">
+      <div class="role-card" id="role-traffic_cop" data-role="traffic_cop">
+        <div class="role-icon">🚦</div>
+        <div class="role-title">Traffic Cop</div>
+        <div class="role-desc">Route incoming requests to servers. You can't see server health.</div>
+      </div>
+      <div class="role-card" id="role-mechanic" data-role="mechanic">
+        <div class="role-icon">🔧</div>
+        <div class="role-title">Mechanic</div>
+        <div class="role-desc">Manage server health, scale infrastructure. You can't see traffic.</div>
+      </div>
+    </div>
+
+    <p id="room-status" style="color:var(--text-muted); font-family:var(--font-mono); font-size:.85rem;">
+      Waiting for teammate<span class="waiting-dots"></span>
+    </p>
+    <p id="room-error" style="color:var(--heat-hot); font-family:var(--font-mono); font-size:.85rem; display:none;"></p>
+  </div>
+
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/lobby.js"></script>
+</body>
+</html>
